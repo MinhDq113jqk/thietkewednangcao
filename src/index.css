@@ -1,0 +1,335 @@
+@import "tailwindcss";
+
+:root {
+  color: #17201d;
+  background: #f7f8f5;
+  font-family: "Be Vietnam Pro", "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+}
+
+body,
+#root {
+  margin: 0;
+  min-height: 100vh;
+}
+
+body {
+  background: #f7f8f5;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.review-comment-textarea {
+  min-height: 6rem;
+  max-height: 24rem;
+  max-width: 100%;
+  resize: vertical;
+  overflow: auto;
+}
+
+.review-comment-textarea::-webkit-resizer {
+  background:
+    linear-gradient(
+      135deg,
+      transparent 0 46%,
+      #0f766e 47% 54%,
+      transparent 55% 64%,
+      #f2c14e 65% 72%,
+      transparent 73% 100%
+    );
+  border-radius: 0 0 6px 0;
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #e4eae7;
+}
+
+.skeleton::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.72) 48%,
+    transparent 76%
+  );
+  content: "";
+  transform: translateX(-100%);
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+button:focus-visible,
+a:focus-visible,
+input[type="checkbox"]:focus-visible,
+input[type="radio"]:focus-visible {
+  outline: 3px solid rgba(15, 118, 110, 0.28);
+  outline-offset: 2px;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+}
+
+.font-display {
+  font-family: "Fraunces", Georgia, serif;
+  letter-spacing: 0;
+}
+
+::selection {
+  background: #f2c14e;
+  color: #17201d;
+}
+
+.culture-map-atmosphere {
+  background:
+    radial-gradient(circle at 78% 26%, rgba(83, 157, 143, 0.26), transparent 29%),
+    radial-gradient(circle at 56% 90%, rgba(226, 177, 73, 0.1), transparent 34%),
+    linear-gradient(115deg, rgba(5, 32, 29, 0.96), rgba(11, 65, 59, 0.5));
+}
+
+.culture-map-shell {
+  isolation: isolate;
+  background-image:
+    radial-gradient(circle at 38% 32%, rgba(89, 167, 151, 0.22), transparent 36%),
+    repeating-radial-gradient(circle at 100% 0, transparent 0 38px, rgba(186, 223, 214, 0.045) 39px 40px);
+}
+
+.culture-map-shell::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, transparent 40%, rgba(3, 30, 27, 0.54));
+  content: "";
+}
+
+.culture-map-land {
+  transform-origin: center;
+  animation: culture-map-breathe 8s ease-in-out infinite;
+}
+
+.culture-route path {
+  stroke-dasharray: 8 10;
+  animation: culture-route-flow 9s linear infinite;
+}
+
+.culture-map-pin {
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.culture-map-pin-core {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 2.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffe39a;
+  border-radius: 999px;
+  background: #dfa837;
+  box-shadow: 0 6px 20px rgba(5, 30, 27, 0.55);
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.culture-map-pin-ring {
+  position: absolute;
+  left: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid rgba(255, 224, 146, 0.68);
+  border-radius: 999px;
+  animation: culture-pin-pulse 2.6s ease-out infinite;
+}
+
+.culture-map-pin-label {
+  max-width: 7.5rem;
+  margin-left: 0.45rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  background: rgba(5, 35, 31, 0.88);
+  padding: 0.33rem 0.6rem;
+  color: #f8eed5;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  opacity: 0.76;
+  backdrop-filter: blur(8px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.culture-map-pin:hover .culture-map-pin-core,
+.culture-map-pin:focus-visible .culture-map-pin-core,
+.culture-map-pin.is-active .culture-map-pin-core {
+  background: #f2c14e;
+  transform: translateY(-3px) scale(1.08);
+}
+
+.culture-map-pin:hover .culture-map-pin-label,
+.culture-map-pin:focus-visible .culture-map-pin-label,
+.culture-map-pin.is-active .culture-map-pin-label {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+.culture-map-preview {
+  animation: culture-preview-enter 260ms ease-out both;
+}
+
+.culture-craft-motion {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    linear-gradient(125deg, rgba(95, 43, 24, 0.2), transparent 46%),
+    repeating-linear-gradient(98deg, #bd7546 0 16px, #a45e36 17px 20px, #d18c59 21px 38px);
+}
+
+.culture-craft-grain {
+  position: absolute;
+  inset: 18% 12%;
+  border: 2px solid rgba(255, 225, 161, 0.8);
+  border-radius: 44% 56% 50% 46%;
+  transform: rotate(-8deg);
+  box-shadow: inset 0 0 0 10px rgba(87, 42, 24, 0.15);
+}
+
+.culture-craft-chisel {
+  position: absolute;
+  top: -12%;
+  left: 62%;
+  width: 12px;
+  height: 130%;
+  border-radius: 8px;
+  background: linear-gradient(#f0d09b 0 58%, #334742 59%);
+  box-shadow: 0 9px 18px rgba(62, 28, 17, 0.3);
+  transform: rotate(28deg);
+  transform-origin: center;
+  animation: culture-chisel-work 2.5s ease-in-out infinite;
+}
+
+.culture-craft-spark {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: #ffe29a;
+  box-shadow: 0 0 10px #ffe29a;
+  animation: culture-spark 1.8s ease-out infinite;
+}
+
+.culture-craft-spark-one { left: 58%; top: 55%; }
+.culture-craft-spark-two { left: 66%; top: 62%; animation-delay: 0.5s; }
+.culture-craft-spark-three { left: 54%; top: 68%; animation-delay: 1s; }
+
+.culture-region-page {
+  background: var(--region-paper);
+  color: var(--region-ink);
+}
+
+.culture-region-hero-pattern {
+  opacity: 0.48;
+  background-image:
+    radial-gradient(circle at 80% 20%, color-mix(in srgb, var(--region-accent) 34%, transparent), transparent 30%),
+    repeating-linear-gradient(135deg, transparent 0 28px, rgba(255, 255, 255, 0.035) 29px 30px);
+}
+
+.culture-region-emblem {
+  box-shadow: inset 0 0 80px rgba(255, 255, 255, 0.04);
+}
+
+.culture-region-orbit {
+  animation: culture-orbit 22s linear infinite;
+}
+
+@keyframes culture-map-breathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes culture-route-flow {
+  to { stroke-dashoffset: -90; }
+}
+
+@keyframes culture-pin-pulse {
+  0% { opacity: 0.9; transform: scale(0.8); }
+  75%, 100% { opacity: 0; transform: scale(1.9); }
+}
+
+@keyframes culture-preview-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes culture-chisel-work {
+  0%, 100% { transform: rotate(28deg) translateY(-8px); }
+  50% { transform: rotate(24deg) translateY(5px); }
+}
+
+@keyframes culture-spark {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-22px, -24px) scale(1.2); }
+}
+
+@keyframes culture-orbit {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 639px) {
+  .culture-map-pin-label {
+    display: none;
+  }
+
+  .culture-map-pin-core,
+  .culture-map-pin-ring {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .skeleton::after {
+    animation: none;
+  }
+}
