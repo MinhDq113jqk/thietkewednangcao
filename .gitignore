@@ -13,6 +13,9 @@ dist-ssr
 *.local
 .env
 backend/.env
+source/backend/.env
+source/backend/uploads/*
+!source/backend/uploads/.gitkeep
 .codex/playwright-venv/
 
 # Editor directories and files

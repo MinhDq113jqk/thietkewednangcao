@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const baseUrl = 'http://127.0.0.1:5173';
-const artifactDir = path.resolve(__dirname, '../../artifacts/playwright');
+const artifactDir = path.resolve(__dirname, '../../../docs/evidence/artifacts/playwright');
 fs.mkdirSync(artifactDir, { recursive: true });
 const browserExecutable = [
   'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',

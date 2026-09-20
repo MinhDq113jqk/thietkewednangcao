@@ -19,13 +19,22 @@ SouvenirShop là marketplace quà lưu niệm Việt Nam dành cho người mua 
 - Database: PostgreSQL.
 - Kiểm thử: Node test runner và Playwright.
 
+## Cấu trúc
+
+- `source/`: toàn bộ mã nguồn và các package chạy được.
+- `docs/`: tài liệu, Postman collection, roadmap và ảnh minh chứng.
+- `.github/`: workflow CI.
+
 ## Chạy local
 
 Yêu cầu: Node.js, npm và PostgreSQL.
 
+Các lệnh mã nguồn chạy từ thư mục `source/`:
+
 1. Cài dependencies:
 
 ```powershell
+cd source
 npm.cmd install
 npm.cmd --prefix backend install
 ```
@@ -37,7 +46,7 @@ Copy-Item backend\.env.example backend\.env
 node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
 ```
 
-Chạy lệnh sinh chuỗi hai lần và đặt hai giá trị khác nhau vào `JWT_SECRET` và `JWT_REFRESH_SECRET` trong `backend\.env`. Cập nhật `DATABASE_URL` theo PostgreSQL local. Không commit file `.env`.
+Chạy lệnh sinh chuỗi hai lần và đặt hai giá trị khác nhau vào `JWT_SECRET` và `JWT_REFRESH_SECRET` trong `source\backend\.env`. Cập nhật `DATABASE_URL` theo PostgreSQL local. Không commit file `.env`.
 
 3. Khởi tạo database:
 
@@ -51,10 +60,12 @@ npm.cmd --prefix backend run seed
 4. Mở hai terminal:
 
 ```powershell
+cd source
 npm.cmd --prefix backend run dev
 ```
 
 ```powershell
+cd source
 npm.cmd run dev
 ```
 
@@ -63,6 +74,7 @@ Truy cập `http://127.0.0.1:5173`. API chạy tại `http://localhost:3000`; ki
 ## Kiểm tra chất lượng
 
 ```powershell
+cd source
 npm.cmd test
 npm.cmd run lint
 npm.cmd run build

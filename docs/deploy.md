@@ -52,10 +52,10 @@ GitHub Actions workflow: `.github/workflows/ci.yml`.
 The workflow runs:
 
 ```bash
-npm ci
-npm test
-npm run lint
-npm run build
-cd backend && npm ci
-cd backend && node --check src/app.js
+cd source && npm ci
+cd source && npm test
+cd source && npm run lint
+cd source && npm run build
+cd source/backend && npm ci
+cd source/backend && node --check src/app.js
 ```

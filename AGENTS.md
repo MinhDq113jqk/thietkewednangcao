@@ -10,15 +10,16 @@ Tài liệu hướng dẫn phối hợp tự động giữa **Codex** (Local Exe
   - **Frontend:** React 19, Vite 8, React Router, TanStack Query, Zustand, Tailwind CSS.
   - **Backend:** Node.js, Express, Sequelize ORM.
   - **Database:** PostgreSQL (có migration & seed script).
-  - **Kiểm thử:** Node test runner (`node --test`), Playwright e2e.
+- **Kiểm thử:** Node test runner (`node --test`), Playwright e2e.
+- **Layout:** mã nguồn chạy được nằm trong `source/`; tài liệu và evidence nằm trong `docs/`.
 
 ---
 
 ## 2. Phân công Vai trò
 
 ### 🛠️ Codex Client (Local Worker & Executor)
-- Trực tiếp quét cấu trúc file, đọc code, tạo và chỉnh sửa file trong thư mục dự án.
-- Thực thi các lệnh terminal: `npm run dev`, `npm test`, migrate database, cài đặt gói.
+- Trực tiếp quét cấu trúc file, đọc code, tạo và chỉnh sửa file trong thư mục dự án; các lệnh Node frontend chạy từ `source/`.
+- Thực thi các lệnh terminal từ `source/`: `npm run dev`, `npm test`, `npm --prefix backend run migrate`, và cài đặt gói.
 - Đóng vai trò thu thập ngữ cảnh code và kích hoạt các công cụ `antigravity_*` để trao đổi với Antigravity.
 
 ### 🧠 Antigravity (Chief Architect & Specialized Advisors)

@@ -12,7 +12,7 @@ Thu muc nay chua Postman collection de test API local cua SouvenirShop.
 1. Chay backend:
 
 ```bash
-cd backend
+cd source\backend
 npm.cmd run dev
 ```
 
@@ -51,7 +51,7 @@ Postman se tu luu `buyerToken`, `sellerToken`, `adminToken`.
 Chay migration va seed rieng cho du lieu van hoa (khong cap nhat tai khoan test):
 
 ```bash
-cd backend
+cd source\backend
 npm.cmd run migrate
 npm.cmd run seed:culture
 ```

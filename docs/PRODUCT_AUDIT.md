@@ -38,7 +38,7 @@ SouvenirShop đạt mức **MVP thương mại điện tử hoàn chỉnh để 
 - `npm.cmd test`: 54/54 test đạt.
 - `npm.cmd run lint`: đạt.
 - `npm.cmd run build`: đạt.
-- `npm.cmd --prefix backend run smoke:core`: đạt với health, 401, 404, recommendation, hai checkout đồng thời, replay, conflict, seller tracking, delivery và cancellation.
+- `npm.cmd --prefix source/backend run smoke:core`: đạt với health, 401, 404, recommendation, hai checkout đồng thời, replay, conflict, seller tracking, delivery và cancellation.
 - Playwright Chromium: đạt ở `1440x1000` và `390x844`, không tràn ngang, không lỗi console/page, font và ảnh hero tải đúng.
 
 ## Rủi ro còn lại

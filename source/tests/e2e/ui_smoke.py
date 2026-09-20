@@ -6,8 +6,8 @@ from urllib.parse import urlparse
 from playwright.sync_api import expect, sync_playwright
 
 
-ROOT = Path(__file__).resolve().parents[2]
-ARTIFACTS = ROOT / "artifacts" / "playwright"
+ROOT = Path(__file__).resolve().parents[3]
+ARTIFACTS = ROOT / "docs" / "evidence" / "artifacts" / "playwright"
 BASE_URL = "http://127.0.0.1:5173"
 HERO_URL = "/src/assets/hero-souvenir-v2.webp"
 
