@@ -8,7 +8,7 @@
 
 | STT | Họ và tên | MSSV | GitHub Username | Đối tượng phụ trách CRUD | Trách nhiệm chính |
 | :---: | :--- | :---: | :---: | :---: | :--- |
-| 1 | Dương Quang Minh (Nhóm trưởng) | *Điền MSSV* | `MinhDq113jqk` | **Product** (Sản phẩm) | Khởi tạo repo, cấu hình `.devcontainer`, CRUD Sản phẩm |
+| 1 | Dương Quang Minh | 23010567 | `MinhDq113jqk` | **Product** (Sản phẩm) | Khởi tạo repo, cấu hình `.devcontainer`, CRUD Sản phẩm |
 
 
 # Giới thiệu dự án SouvenirShop
