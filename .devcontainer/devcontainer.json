@@ -1,0 +1,40 @@
+{
+  "name": "SouvenirShop Dev Container",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/myproject",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "forwardPorts": [3000, 5173, 5432],
+  "portsAttributes": {
+    "3000": {
+      "label": "Backend API Server",
+      "onAutoForward": "notify"
+    },
+    "5173": {
+      "label": "Frontend Vite Dev",
+      "onAutoForward": "openBrowser"
+    },
+    "5432": {
+      "label": "PostgreSQL Database",
+      "onAutoForward": "silent"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "cweijan.vscode-database-client2",
+        "humao.rest-client"
+      ]
+    }
+  },
+  "postCreateCommand": "cd source && npm install && npm --prefix backend install"
+}
