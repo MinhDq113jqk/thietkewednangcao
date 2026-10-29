@@ -1,0 +1,80 @@
+const assert = require('node:assert/strict');
+const crypto = require('node:crypto');
+
+async function verifySettlementsUI({ page, database, context, apiUrl, accounts, product, goto, login, logout, bearer, screenshot, passed }) {
+  const shop = (await database.query('SELECT id,name FROM shops WHERE "ownerId"=$1', [accounts.seller.id])).rows[0];
+  const orderId = crypto.randomUUID();
+  await database.query(`INSERT INTO orders(id,"buyerId","shopId",total,"shippingFee",status,"paymentMethod","paymentExpiresAt") VALUES($1,$2,$3,100000,25000,'pending','bank_transfer',CURRENT_TIMESTAMP+INTERVAL '30 minutes')`, [orderId, accounts.buyer.id, shop.id]);
+  await database.query('INSERT INTO order_items("orderId","productId",name,price,quantity) VALUES($1,$2,$3,100000,1)', [orderId, product.id, 'Settlement UI fixture']);
+  const token = await bearer(accounts.admin);
+  const post = async (route, data, status = 201) => {
+    const response = await context.request.post(`${apiUrl}/api/${route}`, { headers: { Authorization: `Bearer ${token}` }, data });
+    assert.equal(response.status(), status); return response.json();
+  };
+  const { receipt } = await post('admin/payments/receipts', { orderId, reference: `UI-IN-${crypto.randomUUID()}`, amount: 125000, receivedAt: new Date().toISOString(), transferContent: 'Settlement fixture verified', evidence: 'Synthetic incoming bank statement evidence' });
+  await post(`admin/payments/receipts/${receipt.id}/allocate`, { orderId, note: 'Verified settlement fixture funding' }, 200);
+  await database.query(`UPDATE orders SET status='delivered',"deliveredAt"=CURRENT_TIMESTAMP-INTERVAL '8 days' WHERE id=$1`, [orderId]);
+  // bearer() changes shared refresh cookies; establish the intended UI account.
+  await logout(); await login(accounts.admin); await goto('/admin/settlements');
+  await page.getByLabel('Gian hàng', { exact: true }).selectOption(shop.id);
+  await page.getByRole('tab', { name: 'Hoa hồng', exact: true }).click();
+  await page.getByLabel('Hoa hồng tiền hàng (%)', { exact: true }).fill('10');
+  await page.getByLabel('Căn cứ thỏa thuận hoa hồng', { exact: true }).fill('UI fixture: xác nhận hoa hồng 10% tiền hàng.');
+  await page.getByRole('button', { name: 'Xác nhận hoa hồng', exact: true }).click();
+  await page.getByText('Hoa hồng hiện tại: 10% tiền hàng.', { exact: false }).waitFor();
+  await page.getByRole('button', { name: 'Cập nhật sổ giao dịch', exact: true }).click();
+  await page.getByText('Đã kiểm tra.', { exact: false }).waitFor();
+  await page.getByRole('tab', { name: 'Lập kỳ', exact: true }).click();
+  await page.getByLabel('Ghi chú kỳ quyết toán', { exact: true }).fill('UI fixture: chốt kỳ chi trả đã đối soát.');
+  await page.getByRole('button', { name: 'Lập kỳ quyết toán', exact: true }).click();
+  await page.getByRole('article').getByText('Chờ chi trả', { exact: false }).waitFor();
+  const period = (await database.query('SELECT id,amount FROM settlement_periods WHERE "shopId"=$1 AND status=$2', [shop.id, 'draft'])).rows[0];
+  assert.equal(Number(period.amount), 90000);
+  await page.getByRole('button', { name: 'Xem kỳ quyết toán', exact: true }).first().click();
+  const detail = page.getByRole('region', { name: 'Chi tiết kỳ quyết toán', exact: true });
+  await detail.getByText(`Đơn ${orderId}`, { exact: true }).first().waitFor();
+  await detail.getByLabel('Mã giao dịch trên chứng từ', { exact: true }).fill(`UI-PAYOUT-${crypto.randomUUID()}`);
+  await detail.getByLabel('Bằng chứng đã kiểm tra', { exact: true }).fill('Synthetic completed bank payout evidence');
+  await detail.getByLabel('Ghi chú xử lý', { exact: true }).fill('Verified completed transfer to the correct shop beneficiary');
+  await detail.getByLabel('Người nhận trên chứng từ', { exact: true }).fill('Synthetic verified shop beneficiary');
+  await detail.getByRole('checkbox').check();
+  let loseResponse = true;
+  const pattern = `**/api/admin/settlements/periods/${period.id}/payout`;
+  await page.route(pattern, async (route) => {
+    if (!loseResponse) return route.continue();
+    loseResponse = false;
+    const response = await route.fetch(); assert.equal(response.status(), 201);
+    await route.abort('failed');
+  });
+  await detail.getByRole('button', { name: 'Lưu chứng từ chi trả', exact: true }).click();
+  await detail.getByRole('alert').waitFor();
+  await detail.getByRole('button', { name: 'Lưu chứng từ chi trả', exact: true }).click();
+  await detail.getByText('Đã chi trả', { exact: false }).first().waitFor();
+  await page.unroute(pattern);
+  assert.equal((await database.query('SELECT count(*)::int AS count FROM seller_payouts WHERE "periodId"=$1', [period.id])).rows[0].count, 1);
+  await screenshot('admin-settlement-paid.png');
+  passed('Browser admin confirms commission, posts verified ledger, creates a period and retries a lost payout response without duplicate payment');
+
+  await logout(); await login(accounts.seller); await goto('/seller/settlements');
+  await page.getByRole('article').getByText('Đã chi trả', { exact: false }).waitFor();
+  assert.equal(await page.getByRole('button', { name: 'Cập nhật sổ giao dịch', exact: true }).count(), 0);
+  await page.getByRole('button', { name: 'Xem kỳ quyết toán', exact: true }).first().click();
+  await page.getByRole('region', { name: 'Chi tiết kỳ quyết toán', exact: true }).getByText(`Đơn ${orderId}`, { exact: true }).first().waitFor();
+  await screenshot('seller-settlement.png');
+  await page.getByRole('region', { name: 'Chi tiết kỳ quyết toán', exact: true }).getByRole('link', { name: `Đơn ${orderId}`, exact: true }).first().click();
+  assert.equal(await page.getByPlaceholder('Mã đơn, người mua, mã vận đơn...').inputValue(), orderId);
+  await page.locator('tbody tr').waitFor();
+  assert.equal(await page.locator('tbody tr').count(), 1);
+  await goto('/seller/settlements');
+  await page.setViewportSize({ width: 375, height: 812 }); await page.reload(); await page.waitForLoadState('networkidle');
+  await page.getByRole('heading', { name: 'Quyết toán người bán', exact: true }).waitFor();
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth));
+  await screenshot('settlement-mobile.png');
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await logout(); await login(accounts.other); await goto('/seller/settlements');
+  await page.waitForLoadState('networkidle');
+  assert.equal(await page.getByText('Synthetic verified shop beneficiary', { exact: true }).count(), 0);
+  passed('Browser seller traces its payout and order entries in desktop/mobile; another account cannot access settlement data');
+  await logout(); await login(accounts.buyer);
+}
+module.exports = { verifySettlementsUI };

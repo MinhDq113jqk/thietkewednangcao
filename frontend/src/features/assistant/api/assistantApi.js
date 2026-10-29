@@ -1,0 +1,10 @@
+import axiosInstance from '../../../services/axiosInstance';
+
+const assistantApi = {
+  sendMessage: (message) =>
+    axiosInstance
+      .post('/assistant/chat', { message })
+      .then((response) => response.data),
+};
+
+export default assistantApi;

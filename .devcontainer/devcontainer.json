@@ -1,6 +1,6 @@
 {
   "name": "SouvenirShop Dev Container",
-  "dockerComposeFile": "docker-compose.yml",
+  "dockerComposeFile": ["../compose.yaml", "../infrastructure/devcontainer.compose.yaml"],
   "service": "app",
   "workspaceFolder": "/workspaces/myproject",
   "features": {
@@ -9,7 +9,7 @@
   "forwardPorts": [3000, 5173, 5432],
   "portsAttributes": {
     "3000": {
-      "label": "Backend API Server",
+      "label": "NestJS Backend API",
       "onAutoForward": "notify"
     },
     "5173": {
@@ -36,5 +36,5 @@
       ]
     }
   },
-  "postCreateCommand": "cd source && npm install && npm --prefix backend install"
+  "postCreateCommand": "npm --prefix frontend ci && npm --prefix backend ci && npm --prefix backend run env:local && npm --prefix backend run migrate && npm --prefix backend run build"
 }

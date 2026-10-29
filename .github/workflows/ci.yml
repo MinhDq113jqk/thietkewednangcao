@@ -10,9 +10,11 @@ jobs:
   frontend:
     name: Frontend checks
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/postgres
     defaults:
       run:
-        working-directory: source
+        working-directory: frontend
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -20,12 +22,17 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
-          cache-dependency-path: source/package-lock.json
+          cache-dependency-path: |
+            frontend/package-lock.json
+            backend/package-lock.json
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Install dependencies for shared business-rule tests
+        run: npm --prefix ../backend ci
 
       - name: Run unit tests
         run: npm test
@@ -37,11 +44,27 @@ jobs:
         run: npm run build
 
   backend:
-    name: Backend install check
+    name: Backend database and startup checks
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/postgres
     defaults:
       run:
-        working-directory: source/backend
+        working-directory: backend
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -49,12 +72,68 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
-          cache-dependency-path: source/backend/package-lock.json
+          cache-dependency-path: backend/package-lock.json
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Syntax check app
-        run: node --check src/app.js
+      - name: Build NestJS and test routing, guards and errors
+        run: npm test
+
+      - name: Verify disposable database, migrations and startup
+        run: npm run verify:db
+
+  browser:
+    name: Browser flows with NestJS and PostgreSQL
+    needs: [frontend, backend]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@127.0.0.1:5432/postgres
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            frontend/package-lock.json
+            backend/package-lock.json
+      - name: Install frontend and browser dependencies
+        run: npm ci
+      - name: Install backend dependencies
+        run: npm --prefix ../backend ci
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium --only-shell
+      - name: Run browser flows using a disposable database
+        run: npm run test:e2e
+      - name: Verify stock, revenue and effective-price browser flows
+        run: npm run test:e2e:commercial
+      - name: Verify API contracts and completion regressions
+        run: npm run test:e2e:completion
+      - name: Save synthetic screenshots and test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-stack-browser-evidence
+          path: frontend/artifacts/full-stack/
+          retention-days: 7

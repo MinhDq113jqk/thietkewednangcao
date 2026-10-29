@@ -1,0 +1,34 @@
+[
+  {
+    "id": "bat-trang-pottery",
+    "title": "Làm gốm thủ công tại Bát Tràng",
+    "originalTitle": "Bat-Trang-Ceramic-Village13.jpg",
+    "src": "/images/demo/bat-trang-pottery.jpg",
+    "alt": "Công đoạn làm gốm thủ công tại Bát Tràng, ảnh minh họa làng nghề",
+    "author": "Steven C. Price",
+    "authorUrl": "https://commons.wikimedia.org/wiki/User:Steven_C._Price",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bat-Trang-Ceramic-Village13.jpg",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Bat-Trang-Ceramic-Village13.jpg/960px-Bat-Trang-Ceramic-Village13.jpg",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "changes": "Dùng bản thu nhỏ 960 px do Wikimedia cung cấp. Banner hiển thị một phần ảnh bằng object-fit: cover. Ảnh và phần điều chỉnh hiển thị được cung cấp theo CC BY-SA 4.0.",
+    "usage": "Banner tìm quà trên trang chủ.",
+    "verifiedAt": "2026-10-28"
+  },
+  {
+    "id": "hoi-an-lanterns",
+    "title": "Đèn lồng Hội An",
+    "originalTitle": "LANTERNS OF HOI AN 02.jpg",
+    "src": "/images/demo/hoi-an-lanterns-02.jpg",
+    "alt": "Những chiếc đèn lồng nhiều màu tại Hội An, ảnh minh họa văn hóa",
+    "author": "DEBA PRASAD ROY",
+    "authorUrl": "https://commons.wikimedia.org/wiki/User:DEBA_PRASAD_ROY",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:LANTERNS_OF_HOI_AN_02.jpg",
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/LANTERNS_OF_HOI_AN_02.jpg/960px-LANTERNS_OF_HOI_AN_02.jpg",
+    "license": "CC0 1.0",
+    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "changes": "Dùng bản thu nhỏ 960 px do Wikimedia cung cấp. Banner hiển thị một phần ảnh bằng object-fit: cover.",
+    "usage": "Banner bản đồ văn hóa trên trang chủ.",
+    "verifiedAt": "2026-10-28"
+  }
+]

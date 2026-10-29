@@ -1,0 +1,1015 @@
+[
+  {
+    "method": "GET",
+    "path": "api/seller/products/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/seller/products/inventory",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/seller/products/:id/variants",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/seller/products/:id/variants/:variantId",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/seller/products/:id/variants/:variantId/stock",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/auth/register",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/auth/login",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/auth/refresh",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/auth/me",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/auth/logout",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/users/profile",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "PUT",
+    "path": "api/users/profile",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "PUT",
+    "path": "api/users/password",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/users/addresses",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/users/addresses",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "PUT",
+    "path": "api/users/addresses/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "DELETE",
+    "path": "api/users/addresses/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/products",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/products/search",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/products/recommendations",
+    "auth": false,
+    "optionalAuth": true,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/products/:id",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/seller/products",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/seller/products",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/seller/products/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/seller/products/:id/stock",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/seller/products/:id/restore",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "api/seller/products/:id/permanent",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "DELETE",
+    "path": "api/seller/products/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/orders",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/orders",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/orders/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "PUT",
+    "path": "api/orders/:id/cancel",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/seller/orders",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/seller/orders/stats",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/seller/orders/:id/confirm",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/seller/orders/:id/pack",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/seller/orders/:id/ship",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/seller/orders/:id/tracking",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/seller/orders/:id/deliver",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/shops/register",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/shops/me",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/shops/me",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/shops/:slug/products",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/shops/:slug",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/stats",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/shops",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/admin/shops/:id/approve",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/admin/shops/:id/suspend",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/users",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/admin/users/:id/status",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/orders",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/admin/orders/:id/status",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/admin/orders/:id/payment",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/assistant/chat",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/conversations",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/conversations",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/conversations/:id/messages",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/conversations/:id/messages",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "PUT",
+    "path": "api/conversations/:id/read",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/culture/regions",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/culture/regions/:slug",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/culture/products",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/payment/vietqr",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/payment/vietqr/:orderId",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/shipping/estimate",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/shipping/estimate",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/uploads/image",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "health",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/products/:productId/reviews",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/orders/:orderId/reviews",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/orders/:orderId/reviews",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/payments/receipts",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/admin/payments/receipts",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/admin/payments/receipts/:id/allocate",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/payments/orders/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/admin/payments/expire",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/after-sales",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/after-sales/orders/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/seller/after-sales",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/seller/after-sales/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/seller/after-sales/cod",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller",
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/after-sales",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "PUT",
+    "path": "api/admin/after-sales/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/after-sales/cod",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/admin/after-sales/cod/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/after-sales/finance/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/admin/after-sales/refunds",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/payments/receipts/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/seller/settlements",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/seller/settlements/periods/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "seller"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/settlements/shops",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/settlements/shops/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/settlements/periods/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/admin/settlements/shops/:id/policy",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/admin/settlements/shops/:id/sync",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/admin/settlements/shops/:id/periods",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/admin/settlements/shops/:id/adjustments",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/admin/settlements/periods/:id/cancel",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/admin/settlements/periods/:id/payout",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/auth/forgot-password",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/auth/reset-password",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/auth/verify-email",
+    "auth": false,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/auth/request-verification",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/auth/sessions",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "DELETE",
+    "path": "api/auth/sessions",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "DELETE",
+    "path": "api/auth/sessions/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/support",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/support",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/support/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "POST",
+    "path": "api/support/:id/messages",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/notifications",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "PATCH",
+    "path": "api/notifications/:id/read",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": []
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/operations/support",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/operations/support/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "PATCH",
+    "path": "api/admin/operations/support/:id",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/admin/operations/support/:id/messages",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/operations/notifications",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/admin/operations/notifications/:id/retry",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/operations/audit",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/operations/moderation",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "GET",
+    "path": "api/admin/operations/content/:type",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  },
+  {
+    "method": "POST",
+    "path": "api/admin/operations/content/:type/:id/moderate",
+    "auth": true,
+    "optionalAuth": false,
+    "roles": [
+      "admin"
+    ]
+  }
+]

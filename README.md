@@ -1,87 +1,103 @@
-# BÁO CÁO BÀI TẬP NHÓM - THIẾT KẾ WEB NÂNG CAO
+# SouvenirShop
 
-## 1. Thông tin chung & Thành viên nhóm
+## 1. Giới thiệu dự án
 
-- **Tên đề tài:** SouvenirShop - Nền tảng Marketplace quà lưu niệm Việt Nam
-- **Link Git Repo:** [https://github.com/MinhDq113jqk/thietkewednangcao](https://github.com/MinhDq113jqk/thietkewednangcao)
-- **Danh sách thành viên & Phân công CRUD:**
+**SouvenirShop** là website mua bán quà lưu niệm Việt Nam, được xây dựng phục vụ học phần **Thiết kế Web nâng cao**.
 
-| STT | Họ và tên | MSSV | GitHub Username | Đối tượng phụ trách CRUD | Trách nhiệm chính |
-| :---: | :--- | :---: | :---: | :---: | :--- |
-| 1 | Dương Quang Minh | 23010567 | `MinhDq113jqk` | **Product** (Sản phẩm) | Khởi tạo repo, cấu hình `.devcontainer`, CRUD Sản phẩm |
+**Công nghệ sử dụng:**
+- Frontend: React, React-Bootstrap, Vite.
+- Backend: NestJS, Sequelize.
+- Database: PostgreSQL.
 
+**GitHub:** https://github.com/MinhDq113jqk/thietkewednangcao
 
-# Giới thiệu dự án SouvenirShop
+## 2. Thành viên thực hiện
 
-SouvenirShop là marketplace quà lưu niệm Việt Nam dành cho người mua trong và ngoài nước, đồng thời cung cấp kênh bán hàng cho hộ gia đình, làng nghề, cá nhân sáng tạo và xưởng sản xuất.
+**Họ và tên:** Dương Quang Minh
 
-## Chức năng chính
+**Mã sinh viên:** 23010567
 
-- Khám phá, tìm kiếm, lọc và xem chi tiết sản phẩm theo gian hàng.
-- Gợi ý sản phẩm kết hợp sở thích danh mục ẩn danh, sản phẩm đang xem, lịch sử mua và độ phổ biến.
-- Giỏ hàng, COD, VietQR và chống tạo đơn lặp bằng `Idempotency-Key`.
-- Theo dõi trạng thái, hãng vận chuyển, mã vận đơn, vị trí hiện tại và lịch sử hành trình.
-- Tài khoản người mua, sổ địa chỉ và đổi mật khẩu.
-- Kênh người bán quản lý sản phẩm, đơn hàng, giao vận, gian hàng và doanh thu.
-- Kênh quản trị duyệt gian hàng, quản lý người dùng và đơn hàng.
+**GitHub:** MinhDq113jqk
 
+## 3. Hướng dẫn cài đặt và chạy dự án
 
+### Bước 1: Yêu cầu môi trường
 
-## Chạy local
+Cài đặt các công cụ sau:
+- Node.js 24 và npm
+- PostgreSQL 16 trở lên
+- Git
+- Docker (tùy chọn)
 
-Yêu cầu: Node.js, npm và PostgreSQL.
+### Bước 2: Tải mã nguồn
 
-Các lệnh mã nguồn chạy từ thư mục `source/`:
+Mở Terminal và chạy:
 
-1. Cài dependencies:
-
-```powershell
-cd source
-npm.cmd install
-npm.cmd --prefix backend install
+```bash
+git clone https://github.com/MinhDq113jqk/thietkewednangcao.git
+cd thietkewednangcao
 ```
 
-2. Tạo cấu hình backend:
+### Bước 3: Cài đặt thư viện
 
-```powershell
-Copy-Item backend\.env.example backend\.env
-node -e "console.log(require('crypto').randomBytes(48).toString('base64url'))"
+```bash
+npm --prefix frontend ci
+npm --prefix backend ci
 ```
 
-Chạy lệnh sinh chuỗi hai lần và đặt hai giá trị khác nhau vào `JWT_SECRET` và `JWT_REFRESH_SECRET` trong `source\backend\.env`. Cập nhật `DATABASE_URL` theo PostgreSQL local. Không commit file `.env`.
+### Bước 4: Cấu hình cơ sở dữ liệu
 
-3. Khởi tạo database:
+Tạo cấu hình môi trường:
 
-```powershell
-npm.cmd --prefix backend run migrate
-npm.cmd --prefix backend run seed
+```bash
+npm --prefix backend run env:local
 ```
 
-`seed` dùng `SEED_ACCOUNT_PASSWORD` từ môi trường; nếu chưa đặt, script tạo mật khẩu ngẫu nhiên và chỉ in một lần trong terminal local.
+Đảm bảo PostgreSQL đang chạy. Có thể sử dụng Docker:
 
-4. Mở hai terminal:
-
-```powershell
-cd source
-npm.cmd --prefix backend run dev
+```bash
+docker compose up -d db
 ```
 
-```powershell
-cd source
-npm.cmd run dev
+Nếu sử dụng PostgreSQL trên máy, cấu hình kết nối trong `backend/.env` hoặc `backend/.env.local`, đồng thời tạo database `souvenirshop`.
+
+Khởi tạo cấu trúc database:
+
+```bash
+npm --prefix backend run migrate
+npm --prefix backend run db:check
 ```
 
-Truy cập `http://127.0.0.1:5173`. API chạy tại `http://localhost:3000`; kiểm tra nhanh bằng `http://localhost:3000/health`.
+Thêm dữ liệu minh họa (tùy chọn):
 
-## Kiểm tra chất lượng
-
-```powershell
-cd source
-npm.cmd test
-npm.cmd run lint
-npm.cmd run build
-npm.cmd --prefix backend run smoke:core
+```bash
+npm --prefix backend run seed:demo
 ```
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image.png)
+
+### Bước 5: Khởi chạy dự án
+
+Mở hai Terminal tại thư mục gốc của dự án.
+
+**Terminal 1 – Backend:**
+
+```bash
+npm --prefix backend run dev
+```
+
+Backend chạy tại: http://localhost:3000
+
+**Terminal 2 – Frontend:**
+
+```bash
+npm --prefix frontend run dev
+```
+
+Frontend chạy tại: http://127.0.0.1:5173
+
+### Bước 6: Truy cập website
+
+Mở trình duyệt và truy cập:
+
+**http://127.0.0.1:5173**
+
+Sau khi hoàn thành các bước trên, có thể sử dụng và trải nghiệm website SouvenirShop trên máy tính cá nhân.
